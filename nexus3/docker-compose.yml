@@ -1,0 +1,9 @@
+version: '3'
+services:
+
+  nexus:
+    image: "sonatype/nexus3"
+    ports: 
+      - 8081:8081
+    volumes: 
+      - ~/Docker/volumes/nexus3:/nexus-data

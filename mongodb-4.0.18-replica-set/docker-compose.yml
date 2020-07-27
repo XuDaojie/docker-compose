@@ -1,0 +1,56 @@
+version: '3'
+services:
+
+  master:
+    image: "mongo:4.0.18-xenial"
+    ports:
+      - "30000:27017"
+    # command: --replSet rs0 --auth --keyFile=/data/configdb/mongodb.key
+    command: --replSet rs0
+    volumes:
+      - ~/Docker/volumes/mongodb-4.0.18-rs-db-master:/data/db
+      - ~/Docker/volumes/mongodb-4.0.18-rs-conf-master:/data/configdb
+    # networks:
+    #   default:
+    #     ipv4_address: 172.28.0.2
+
+  replica1:
+    image: "mongo:4.0.18-xenial"
+    ports:
+      - "30001:27017"
+    # command: --replSet rs0 --auth --keyFile=/data/configdb/mongodb.key
+    command: --replSet rs0
+    volumes:
+      - ~/Docker/volumes/mongodb-4.0.18-rs-db-replica1:/data/db
+      - ~/Docker/volumes/mongodb-4.0.18-rs-conf-replica1:/data/configdb
+    # networks:
+    #   default:
+    #     ipv4_address: 172.28.0.3
+
+  replica2:
+    image: "mongo:4.0.18-xenial"
+    ports:
+      - "30002:27017"
+    # command: --replSet rs0 --auth --keyFile=/data/configdb/mongodb.key
+    command: --replSet rs0
+    volumes:
+      - ~/Docker/volumes/mongodb-4.0.18-rs-db-replica2:/data/db
+      - ~/Docker/volumes/mongodb-4.0.18-rs-conf-replica2:/data/configdb
+    # networks:
+    #   default:
+    #     ipv4_address: 172.28.0.4
+
+# volumes:
+#   db-master:
+#   db-replica1:
+#   db-replica2:
+#   config-master:
+#   config-replica1:
+#   config-replica2:
+
+# networks:
+#   default:
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 172.28.0.0/16
