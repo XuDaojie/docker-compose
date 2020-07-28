@@ -1,5 +1,5 @@
 
 # docker-compose
 
-本机docker-compose安装配置
+本机软件docker-compose安装配置
 
