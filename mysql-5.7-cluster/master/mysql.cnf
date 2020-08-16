@@ -1,4 +1,4 @@
 [mysqld]
-server_id=33000
+server-id=33000
 log-bin=/var/lib/mysql-log/mysql-bin
 binlog-format=ROW

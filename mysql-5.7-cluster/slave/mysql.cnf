@@ -1,2 +1,3 @@
 [mysqld]
 server_id=33001
+read_only=1
