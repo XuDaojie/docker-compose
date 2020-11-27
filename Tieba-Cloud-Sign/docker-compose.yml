@@ -6,8 +6,8 @@ services:
     environment:
       DB_HOST: db:3306
       DB_USER: root
-      DB_PASSWD: janejane123456
       DB_NAME: tiebacloud
+      DB_PASSWD: xdj123456
       CSRF: "false"
     ports:
       - "80:8080"
@@ -21,6 +21,4 @@ services:
     image: "mysql:5.5"
     environment:
       MYSQL_DATABASE: tiebacloud
-      MYSQL_ROOT_PASSWORD: janejane123456
-    volumes:
-      - ~/Docker/volumes/mysql-5.5:/var/lib/mysql
+      MYSQL_ROOT_PASSWORD: xdj123456

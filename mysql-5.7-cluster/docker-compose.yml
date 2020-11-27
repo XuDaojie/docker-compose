@@ -3,6 +3,7 @@ services:
 
   master:
     build: ./master
+    restart: always
     ports:
       - "3306:3306"
       - "3307:3306"
@@ -15,9 +16,10 @@ services:
       - ~/Docker/volumes/mysql-5.7-master-log:/var/lib/mysql-log
 
   slave:
+    build: ./slave
+    restart: always
     depends_on: 
       - master
-    build: ./slave
     ports:
       - "33001:3306"
     environment:
