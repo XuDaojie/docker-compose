@@ -1,5 +1,5 @@
 version: '3'
-
+# todo 未完成
 services:
   zoo1:
     image: zookeeper:3.6.1
@@ -11,3 +11,11 @@ services:
       - 8080:8080
     environment:
       ZOO_MY_ID: 1
+
+  kafka1:
+    image: kafka:2.8.0
+    build: .
+    depends_on: 
+      - zoo1
+    ports:
+      - 9092:9092
