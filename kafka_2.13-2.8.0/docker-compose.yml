@@ -4,7 +4,7 @@ services:
   zoo1:
     image: zookeeper:3.6.1
     # restart: always
-    hostname: zoo1
+    hostname: zookeeper1.docker
     ports:
       - 2181:2181
       - 2188:2181
