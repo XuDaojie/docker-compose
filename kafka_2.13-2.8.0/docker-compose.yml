@@ -19,3 +19,10 @@ services:
       - zoo1
     ports:
       - 9092:9092
+  # kafkamanager:
+  #   image: kafkamanager/kafka-manager:3.0.0.4
+  #   ports:
+  #     - 9000:9000
+  #   environment:
+  #     ZK_HOSTS: zoo1
+  # docker pull kafkamanager/kafka-manager
