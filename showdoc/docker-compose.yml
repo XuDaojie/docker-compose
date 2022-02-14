@@ -1,0 +1,9 @@
+version: '3'
+services:
+# 默认账号 showdoc 123456
+  db:
+    image: "star7th/showdoc"
+    ports:
+      - "4999:80"
+    volumes:
+      - ~/Docker/volumes/showdoc:/var/www/html

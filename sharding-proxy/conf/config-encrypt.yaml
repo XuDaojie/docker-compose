@@ -1,0 +1,27 @@
+schemaName: encrypt_db
+
+#dataSource:  !!org.apache.commons.dbcp2.BasicDataSource
+dataSource:  #!!org.apache.commons.dbcp.BasicDataSource
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql://127.0.0.1:33001/demo?serverTimezone=UTC&useSSL=false
+  username: root
+  password: 123456
+  connectionTimeoutMilliseconds: 30000
+  idleTimeoutMilliseconds: 60000
+  maxLifetimeMilliseconds: 1800000
+  maxPoolSize: 50
+
+encryptRule:
+  tables:
+    t_foo_ss:
+      columns:
+        foo:
+          cipherColumn: foo
+          encryptor: foo_encryptor
+  encryptors:
+    foo_encryptor:
+      type: md5
+#      props:
+#        aes.key.value: 123456
+props:
+  query.with.cipher.column: true #是否使用密文列查询
