@@ -1,0 +1,10 @@
+version: '3'
+services:
+
+  nexus:
+    image: "sonatype/nexus:2.14.21-02"
+    ports: 
+      - 8081:8081
+    volumes: 
+      - ~/Docker/volumes/nexus2:/sonatype-work
+# 默认账号密码 admin admin123
