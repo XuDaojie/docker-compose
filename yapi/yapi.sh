@@ -1,5 +1,9 @@
 # https://www.jianshu.com/p/a97d2efb23c5
 
+# 默认账号密码
+# admin@yapi.com
+# ymfe.org
+
 # 创建存储卷
 docker volume create mongo-data-yapi
 
