@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  grafana:
+    restart: always
+    image: grafana/grafana:10.0.1
+    user: root
+    ports:
+      - 3000:3000
+    volumes:
+      - './grafana/data:/var/lib/grafana'
+      - './grafana/log:/var/log/grafana'
+      - './conf/grafana/grafana.ini:/etc/grafana/grafana.ini'
+# admin:admin docker pull prom/prometheus:v2.45.0
+
+  prometheus:
+    restart: always
+    image: prom/prometheus:v2.45.0
+    user: root
+    ports:
+      - 9090:9090
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-lifecycle' # 支持配置热更新
+      - '--log.level=debug'
+    volumes:
+      - ./conf/promethues:/etc/prometheus
+      - ./promethues:/prometheus
+  

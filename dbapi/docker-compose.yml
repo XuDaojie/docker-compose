@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  dbapi:
+    restart: always
+    # image: freakchicken/db-api:4.0.0
+    image: freakchicken/db-api:3.2.1
+    # user: root
+    ports:
+      - 8520:8520
+    command:
+      - standalone
