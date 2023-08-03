@@ -8,11 +8,7 @@ services:
     ports:
       - "9000:9000"
       - "9090:9090"
-    env_file: env.list
-    environment:
-      # - MINIO_SERVER_URL=http://192.168.2.179:9000/ # 不配置则share地址默认为127.0.0.1
-      - MINIO_SERVER_URL=http://${LOCAL_IP}:9000/ # 不配置则share地址默认为127.0.0.1
+    env_file: ./conf/minio.env
     volumes:
       - ./data:/data
     command: server --console-address :9090 /data
-    # command: 'server --console-address :9090 /data && /bin/bash export $(cat ./env.list| xargs)'
