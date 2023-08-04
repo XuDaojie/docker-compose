@@ -1,0 +1,14 @@
+version: '3'
+services:
+
+  jenkins:
+    image: "jenkins:2.60.3-alpine"
+#    restart: always
+    # user: root
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    env_file:
+      - ./conf/jenkins.env
+    # volumes:
+    #   - ./data:/var/jenkins_home
