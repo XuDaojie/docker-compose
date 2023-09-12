@@ -10,3 +10,4 @@ services:
       - ./conf/mysql.env
     volumes:
       - ./data:/var/lib/mysql
+      - ./conf/mysql.conf.d:/etc/mysql/mysql.conf.d
