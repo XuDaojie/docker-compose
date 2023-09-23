@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+  # tag:监控数据展示及预警
   grafana:
     restart: always
     image: grafana/grafana:10.0.1
@@ -13,6 +14,7 @@ services:
       - './conf/grafana/grafana.ini:/etc/grafana/grafana.ini'
 # admin:admin docker pull prom/prometheus:v2.45.0
 
+  # tag:监控数据存储
   prometheus:
     restart: always
     image: prom/prometheus:v2.45.0
@@ -26,4 +28,15 @@ services:
     volumes:
       - ./conf/promethues:/etc/prometheus
       - ./promethues:/prometheus
-  
+
+  # tag:http监控数据采集
+  blackbox-exporter:
+    restart: always
+    image: prom/blackbox-exporter:v0.24.0
+    user: root
+    ports:
+      - 9115:9115
+    command:
+      - --config.file=/etc/blackbox/blackbox.yml
+    volumes:
+      - ./conf/blackbox-exporter/blackbox.yml:/etc/blackbox/blackbox.yml
