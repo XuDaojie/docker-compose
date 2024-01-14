@@ -12,4 +12,5 @@ services:
     env_file: ./conf/minio.env
     volumes:
       - ./data:/data
+      # - ./logs:/.minio/logs
     command: server --console-address :9090 /data

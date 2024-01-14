@@ -1,3 +1,4 @@
 /grafana
 /promethues
-/images
+#/images
+#!/images/install.sh

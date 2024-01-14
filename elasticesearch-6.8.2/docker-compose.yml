@@ -1,0 +1,20 @@
+version: "3.1"
+services:
+  elasticsearch:
+    image: elasticsearch:6.8.2
+    container_name: es6
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - "discovery.type=single-node"
+    volumes:
+      - ./data:/usr/share/elasticsearch/data
+      - ./logs:/usr/share/elasticsearch/logs
+      - ./plugins:/usr/share/elasticsearch/plugins
+  kabana:
+    image: kibana:6.8.2
+    container_name: kibana6
+    ports:
+      - 5601:5601
+  
