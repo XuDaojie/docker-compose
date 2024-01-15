@@ -1,0 +1,34 @@
+#groups:
+#  - name: example
+#    rules:
+#      - alert: HighErrorRate
+#        expr: job:request_latency_seconds:mean5m{job="myjob"} > 0.5
+#        for: 10m
+#        labels:
+#          severity: page
+#        annotations:
+#          summary: High request latency
+#          description: description info
+
+groups:
+  - name: example
+    rules:
+      - alert: HighErrorRate
+#        expr: probe_success{instance="http://example.com:8080", job="blackbox-http_2xx"}==0
+        expr: probe_success{job="blackbox-http_2xx"}==0
+        for: 1m
+        labels:
+          severity: page
+        annotations:
+          summary: High request latency
+          description: description info
+  - name: cpu
+    rules:
+      - alert: CPU使用率超时1%
+        expr: 100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 1
+        for: 1m
+        labels:
+          severity: page
+        annotations:
+          summary: High request latency
+          description: description info

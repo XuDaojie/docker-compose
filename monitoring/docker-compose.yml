@@ -40,3 +40,15 @@ services:
       - --config.file=/etc/blackbox/blackbox.yml
     volumes:
       - ./conf/blackbox-exporter/blackbox.yml:/etc/blackbox/blackbox.yml
+
+  alertmanager:
+    restart: always
+    image: prom/alertmanager:v0.26.0
+    user: root
+    ports:
+      - 9093:9093
+#    command:
+#      - --config.file=/etc/alertmanager/alertmanager.yml
+#      - --storage.path=/alertmanager
+    volumes:
+      - ./conf/alertmanager:/etc/alertmanager
