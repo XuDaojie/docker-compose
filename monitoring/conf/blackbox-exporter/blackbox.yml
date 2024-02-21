@@ -49,3 +49,9 @@ modules:
     timeout: 5s
     icmp:
       ttl: 5
+
+  http_post_2xx_custom:
+    prober: http
+    http:
+      method: POST
+      Content-Type: application/x-www-form-urlencoded

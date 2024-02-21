@@ -1,0 +1,18 @@
+global:
+  resolve_timeout: 30s
+route:
+  group_by: ['example']
+  group_wait: 30s
+  group_interval: 30s
+  repeat_interval: 30s
+  receiver: 'web.hook'
+receivers:
+  - name: 'web.hook'
+    webhook_configs:
+      - url: 'http://host.docker.internal:3002/webhook/alertManager'
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'dev', 'instance']
