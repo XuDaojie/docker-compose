@@ -25,6 +25,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--web.enable-lifecycle' # 支持配置热更新
       - '--log.level=debug'
+      - '--storage.tsdb.retention.time=60d' # 日志保留60天
     volumes:
       - ./conf/promethues:/etc/prometheus
       - ./promethues:/prometheus
@@ -41,6 +42,7 @@ services:
     volumes:
       - ./conf/blackbox-exporter/blackbox.yml:/etc/blackbox/blackbox.yml
 
+  # tag:发送告警消息
   alertmanager:
     restart: always
     image: prom/alertmanager:v0.26.0
@@ -52,3 +54,11 @@ services:
 #      - --storage.path=/alertmanager
     volumes:
       - ./conf/alertmanager:/etc/alertmanager
+
+  # nginx-prometheus-exporter:
+  #   restart: always
+  #   image: nginx/nginx-prometheus-exporter:1.1.0
+  #   ports:
+  #     - 9113:9113
+  #   command:
+  #     - --nginx.scrape-uri=http://host.docker.internal:8080/stub_status

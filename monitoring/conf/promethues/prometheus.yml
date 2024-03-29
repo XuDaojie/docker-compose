@@ -16,7 +16,7 @@ alerting:
 rule_files:
   # - "first_rules.yml"
   # - "second_rules.yml"
-  - "first_rules.yml" # 告警规则配置文件
+  - "alerts/first_rules.yml" # 告警规则配置文件
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
@@ -29,6 +29,15 @@ scrape_configs:
 
     static_configs:
       - targets: ["localhost:9090"]
+
+# nginx 监控
+  # - job_name: "nginx-prometheus-exporter"
+
+  #   # metrics_path defaults to '/metrics'
+  #   # scheme defaults to 'http'.
+
+  #   static_configs:
+  #     - targets: ["host.docker.internal:9113"]
 
   - job_name: "node_exporter"
 
@@ -60,6 +69,22 @@ scrape_configs:
           - http://www.taobao.com
           - http://www.grafana.com
           - https://api.github.com/repos/prometheus/prometheus?callback=callback
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: host.docker.internal:9115  # The blackbox exporter's real hostname:port.
+  - job_name: 'blackbox-http_post_2xx_custom'
+    metrics_path: /probe
+    params:
+      module: [http_post_2xx_custom]  # Look for a HTTP 200 response.
+    static_configs:
+      - targets:
+          - http://prometheus.io    # Target to probe with http. 需要检测的地址
+          - https://prometheus.io   # Target to probe with https.
+          - http://example.com:8080 # Target to probe with http on port 8080.
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target

@@ -1,10 +1,10 @@
 global:
-  resolve_timeout: 30s
+  resolve_timeout: 30s # 用于指定在将告警状态从 firing 转换为 resolved 时所允许的最大时间。换句话说，它定义了一个告警在被解决之后确认所需的时长
 route:
   group_by: ['example']
   group_wait: 30s
-  group_interval: 30s
-  repeat_interval: 30s
+  group_interval: 30s # 分组后等待多长时间再次发送未解决的告警通知（group_interval）
+  repeat_interval: 30s # 指定的时间间隔周期性地重新发送相同告警通知
   receiver: 'web.hook'
 receivers:
   - name: 'web.hook'
