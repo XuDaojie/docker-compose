@@ -13,8 +13,10 @@ services:
       - ./elasticsearch/data:/usr/share/elasticsearch/data  
     #   - ./elasticsearch/plugins:/usr/share/elasticsearch/plugins
     #   - ./elasticsearch/logs:/usr/share/elasticsearch/logs
+    # 解决容器对本地文件无写入权限
     user: root
-      
+    privileged: true
+
   kibana:
     image: kibana:7.4.2
     container_name: kibana7
