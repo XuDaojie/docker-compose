@@ -10,9 +10,10 @@ services:
       - "discovery.type=single-node"
     volumes:
       - ./elasticsearch/config:/usr/share/elasticsearch/config
-      - ./elasticsearch/data:/usr/share/elasticsearch/data
-      # - ./elasticsearch/plugins:/usr/share/elasticsearch/plugins
-      - ./elasticsearch/logs:/usr/share/elasticsearch/logs
+      - ./elasticsearch/data:/usr/share/elasticsearch/data  
+    #   - ./elasticsearch/plugins:/usr/share/elasticsearch/plugins
+    #   - ./elasticsearch/logs:/usr/share/elasticsearch/logs
+    user: root
       
   kibana:
     image: kibana:7.4.2
@@ -24,11 +25,11 @@ services:
     #   # - ./kibana/plugins:/usr/share/kibana/plugins
     #   # - ./kibana/logs:/usr/share/kibana/logs
 
-  logstash:
-    image: logstash:7.4.2
-    container_name: logstash7
-    ports:
-      - 5044:5044
-    volumes:                                                                                      
-      - ./logstash/config:/usr/share/logstash/config
-      # /usr/share/logstash/data
+#   logstash:
+#     image: logstash:7.4.2
+#     container_name: logstash7
+#     ports:
+#       - 5044:5044
+#     volumes:                                                                                      
+#       - ./logstash/config:/usr/share/logstash/config
+#       # /usr/share/logstash/data
