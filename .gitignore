@@ -1,5 +1,6 @@
 .idea/
 .vscode/
 data
+logs
 **/images/*.tar
 *.log
