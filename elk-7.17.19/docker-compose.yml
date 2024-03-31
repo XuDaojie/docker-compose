@@ -1,7 +1,7 @@
 version: "3.1"
 services:
   elasticsearch:
-    image: elasticsearch:7.4.2
+    image: elasticsearch:7.17.19
     container_name: es7
     ports:
       - 9200:9200
@@ -10,21 +10,21 @@ services:
       - "discovery.type=single-node"
     volumes:
       - ./elasticsearch/config:/usr/share/elasticsearch/config
-      - ./elasticsearch/data:/usr/share/elasticsearch/data  
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
       - ./elasticsearch/plugins:/usr/share/elasticsearch/plugins
       - ./elasticsearch/logs:/usr/share/elasticsearch/logs
     # 解决容器对本地文件无写入权限
-    user: elasticsearch
+    # user: elasticsearch
     # privileged: true
 
   kibana:
-    image: kibana:7.4.2
+    image: kibana:7.17.19
     container_name: kibana7
     ports:
       - 5601:5601
     volumes:
-      - ./kibana/config:/usr/share/kibana/config
-      - ./kibana/plugins:/usr/share/kibana/plugins
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+      # - ./kibana/plugins:/usr/share/kibana/plugins
     #   # - ./kibana/logs:/usr/share/kibana/logs
 
 #   logstash:
@@ -34,4 +34,5 @@ services:
 #       - 5044:5044
 #     volumes:                                                                                      
 #       - ./logstash/config:/usr/share/logstash/config
-#       # /usr/share/logstash/data
+#       - /usr/local/var/log/nginx/access-logstash.log:/usr/local/nginx/logs/access-logstash.log
+# #       # /usr/share/logstash/data
