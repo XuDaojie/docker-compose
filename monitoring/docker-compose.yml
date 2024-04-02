@@ -8,6 +8,8 @@ services:
     user: root
     ports:
       - 3000:3000
+    environment:
+      - GF_LIVE_MAX_CONNECTIONS=0 # 禁用WebSocket
     volumes:
       - './grafana/data:/var/lib/grafana'
       - './grafana/log:/var/log/grafana'
