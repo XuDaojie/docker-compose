@@ -12,9 +12,17 @@ services:
       - ./data:/usr/share/elasticsearch/data
       - ./logs:/usr/share/elasticsearch/logs
       - ./plugins:/usr/share/elasticsearch/plugins
+  
   kabana:
     image: kibana:6.8.2
     container_name: kibana6
     ports:
       - 5601:5601
   
+  logstash:
+    image: logstash:6.8.2
+    container_name: logstash6
+    ports:
+      - 5044:5044
+    volumes:                                                                                      
+      - ./logstash/config:/usr/share/logstash/config

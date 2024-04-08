@@ -28,11 +28,10 @@ services:
     #   # - ./kibana/logs:/usr/share/kibana/logs
 
 #   logstash:
-#     image: logstash:7.4.2
+#     image: logstash:7.17.19
 #     container_name: logstash7
 #     ports:
 #       - 5044:5044
 #     volumes:                                                                                      
 #       - ./logstash/config:/usr/share/logstash/config
-#       - /usr/local/var/log/nginx/access-logstash.log:/usr/local/nginx/logs/access-logstash.log
 # #       # /usr/share/logstash/data
