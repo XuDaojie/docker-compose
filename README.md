@@ -4,6 +4,7 @@
 本机软件docker-compose安装配置
 
 # docker 镜像地址
+```json
 {
   "registry-mirrors": [
     "https://xxxxx.mirror.aliyuncs.com",
@@ -11,10 +12,13 @@
     "https://mirror.baidubce.com"
   ]
 }
+```
 
 # 导出镜像
+``` shell
 docker save minio/minio:RELEASE.2023-07-21T21-12-44Z -o minio-RELEASE.2023-07-21T21-12-44Z.tar
 docker save mysql:5.7.28 -o mysql-5.7.28.tar
+```
 
 # issues
 docker容器启动时报
