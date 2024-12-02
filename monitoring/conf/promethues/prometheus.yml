@@ -47,6 +47,13 @@ scrape_configs:
     static_configs:
       - targets: ["host.docker.internal:9100"]
 
+  - job_name: "jmx_exporter"
+#    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["host.docker.internal:1234"] # 访问宿主机IP
+        labels:
+          instance: 'multi-node.domain.com[node-01.domain.loc]'
+
   - job_name: "ruoyi"
     metrics_path: /actuator/prometheus
     static_configs:

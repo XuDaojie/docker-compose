@@ -57,10 +57,10 @@ services:
     volumes:
       - ./conf/alertmanager:/etc/alertmanager
 
-  nginx-prometheus-exporter:
-    restart: always
-    image: nginx/nginx-prometheus-exporter:1.1.0
-    ports:
-      - 9113:9113
-    command:
-      - --nginx.scrape-uri=http://host.docker.internal:8080/basic_status
+#  nginx-prometheus-exporter:
+#    restart: always
+#    image: nginx/nginx-prometheus-exporter:1.1.0
+#    ports:
+#      - 9113:9113
+#    command:
+#      - --nginx.scrape-uri=http://host.docker.internal:8080/basic_status
