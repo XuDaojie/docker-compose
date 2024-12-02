@@ -1,8 +1,9 @@
 version: '3'
 services:
 
-  db:
-    image: "adguard/adguardhome"
+  adguardhome:
+    image: "adguard/adguardhome:latest"
+    # image: "adguard/adguardhome:v0.107.54"
     restart: always
     ports:
       - "3000:3000"
@@ -13,5 +14,5 @@ services:
       - "443:443/tcp"
       - "853:853/tcp"
     volumes:
-      - ~/Docker/volumes/adguardHome/conf:/opt/adguardhome/conf
-      - ~/Docker/volumes/adguardHome/work:/opt/adguardhome/work
+      - ./conf:/opt/adguardhome/conf
+      - ./work:/opt/adguardhome/work
