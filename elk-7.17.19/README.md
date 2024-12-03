@@ -18,3 +18,10 @@ chgrp 0 data
 docker save elasticsearch:7.17.19 -o elasticsearch-7.17.19.tar
 docker save kibana:7.17.19 -o kibana-7.17.19.tar
 docker save logstash:7.17.19 -o logstash-7.17.19.tar
+
+
+
+## 设置密码
+https://blog.csdn.net/zccmp20/article/details/123800432
+https://cloud.baidu.com/article/2812034
+https://shackles.cn/index.php/archives/47/

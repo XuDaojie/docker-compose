@@ -3,7 +3,7 @@ version: '3'
 services:
   zoo1:
     image: zookeeper:3.6.1
-    # restart: always
+    restart: always
     hostname: zoo1
     ports:
       - 2181:2181

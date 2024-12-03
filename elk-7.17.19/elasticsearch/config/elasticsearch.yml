@@ -1,2 +1,8 @@
 cluster.name: "docker-cluster"
 network.host: 0.0.0.0
+
+
+## 开启账号密码
+#xpack.security.enabled: true
+#xpack.license.self_generated.type: basic
+#xpack.security.transport.ssl.enabled: true

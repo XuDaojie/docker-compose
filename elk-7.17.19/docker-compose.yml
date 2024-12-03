@@ -36,6 +36,9 @@ services:
       - 5044:5044
     environment:
       - "config.reload.automatic=true" # 无需重启容器，自动重载配置
+    logging:
+      options:
+        max-size: "10m"
     volumes:
       - ./logstash/config:/usr/share/logstash/config
       - ./logstash/pipeline:/usr/share/logstash/pipeline
