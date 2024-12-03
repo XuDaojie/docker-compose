@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  james:
+    image: apache/james:demo-3.8.1
+    container_name: james_run_3_8_1
+    ports:
+      - "25:25"
+      - "465:465"
+      - "587:587"
+      - "110:110"
+      - "995:995"
+      - "143:143"
+      - "993:993"
+      - "8000:8000"
+      - "8025:8025"
+    restart: unless-stopped
+
+  roundcube:
+    image: roundcube/roundcubemail:latest
+    container_name: roundcubemail
+    environment:
+      - ROUNDCUBEMAIL_DEFAULT_HOST=james_run_3_8_1
+      - ROUNDCUBEMAIL_SMTP_SERVER=james_run_3_8_1
+      - ROUNDCUBEMAIL_IMAP_SERVER=james_run_3_8_1
+      - ROUNDCUBEMAIL_SMTP_PORT=465
+      - ROUNDCUBEMAIL_IMAP_PORT=993
+#      - ROUNDCUBEMAIL_SMTP_PORT=25
+#      - ROUNDCUBEMAIL_IMAP_PORT=143
+    # QQ
+    #      - ROUNDCUBEMAIL_DEFAULT_HOST=imap.qq.com
+    #      - ROUNDCUBEMAIL_SMTP_SERVER=smtp.qq.com
+    #      - ROUNDCUBEMAIL_IMAP_SERVER=imap.qq.com
+    #      - ROUNDCUBEMAIL_SMTP_PORT=25
+    #      - ROUNDCUBEMAIL_IMAP_PORT=143
+
+    # 126
+    #      - ROUNDCUBEMAIL_DEFAULT_HOST=imap.126.com
+    #      - ROUNDCUBEMAIL_SMTP_SERVER=smtp.126.com
+    #      - ROUNDCUBEMAIL_IMAP_SERVER=imap.126.com
+    #      - ROUNDCUBEMAIL_SMTP_PORT=25
+    #      - ROUNDCUBEMAIL_IMAP_PORT=143
+    ports:
+      - "8080:80"
+    volumes:
+      - ./roundcube_data:/var/www/html
+    restart: unless-stopped
+
+#volumes:
+#  roundcube_data:

@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  roundcube:
+    image: roundcube/roundcubemail:latest
+    container_name: roundcube
+    environment:
+      - ROUNDCUBEMAIL_DEFAULT_HOST=imap://host.docker.internal
+      - ROUNDCUBEMAIL_SMTP_SERVER=stmp://host.docker.internal
+      - ROUNDCUBEMAIL_IMAP_SERVER=imap://host.docker.internal
+      - ROUNDCUBEMAIL_SMTP_PORT=465
+      - ROUNDCUBEMAIL_IMAP_PORT=993
+# QQ
+#      - ROUNDCUBEMAIL_DEFAULT_HOST=imap.qq.com
+#      - ROUNDCUBEMAIL_SMTP_SERVER=smtp.qq.com
+#      - ROUNDCUBEMAIL_IMAP_SERVER=imap.qq.com
+#      - ROUNDCUBEMAIL_SMTP_PORT=25
+#      - ROUNDCUBEMAIL_IMAP_PORT=143
+
+# 126
+#      - ROUNDCUBEMAIL_DEFAULT_HOST=imap.126.com
+#      - ROUNDCUBEMAIL_SMTP_SERVER=smtp.126.com
+#      - ROUNDCUBEMAIL_IMAP_SERVER=imap.126.com
+#      - ROUNDCUBEMAIL_SMTP_PORT=25
+#      - ROUNDCUBEMAIL_IMAP_PORT=143
+    ports:
+      - "8080:80"
+    volumes:
+      - ./roundcube_data:/var/www/html
+    restart: unless-stopped
+
+#volumes:
+#  roundcube_data:
