@@ -6,6 +6,6 @@ services:
     ports: 
       - 8081:8081
     volumes: 
-      - ~/Docker/volumes/nexus3:/nexus-data
+      - ./data:/nexus-data
 # admin账号默认密码路径
 # /nexus-data/admin.password
