@@ -15,6 +15,9 @@ services:
       memlock:
         soft: -1
         hard: -1
+    logging:
+      options:
+        max-size: "10m"
     volumes:
       - ./elasticsearch/data:/usr/share/elasticsearch/data
 
@@ -25,6 +28,9 @@ services:
       - 5601:5601
     environment:
       - I18N_LOCALE=zh-CN
+    logging:
+      options:
+        max-size: "10m"
     volumes:
       - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
       # - ./kibana/plugins:/usr/share/kibana/plugins
@@ -52,6 +58,10 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    logging:
+      options:
+        max-size: "10m"
+
   ui:
     image: apache/skywalking-ui:10.1.0-java21
     container_name: skywalking-ui-10
@@ -64,3 +74,6 @@ services:
       - 8888:8080
     environment:
       SW_OAP_ADDRESS: http://oap:12800
+    logging:
+      options:
+        max-size: "10m"
