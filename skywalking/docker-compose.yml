@@ -4,8 +4,8 @@ services:
     image: elasticsearch:7.17.25
     container_name: elasticsearch-7
     restart: always
-    ports:
-      - 9200:9200
+#    ports:
+#      - 9200:9200
     environment:
       discovery.type: single-node  #es单机模式
       TZ: Asia/Shanghai  #时区设置
@@ -24,8 +24,8 @@ services:
   kibana:
     image: kibana:7.17.25
     container_name: kibana-7
-    ports:
-      - 5601:5601
+#    ports:
+#      - 5601:5601
     environment:
       - I18N_LOCALE=zh-CN
     logging:
@@ -45,8 +45,8 @@ services:
       - elasticsearch
     restart: always
     ports:
-      - 11800:11800
-      - 12800:12800
+      - 11800:11800 # 与agent交互
+#      - 12800:12800 # 与ui交互
     environment:
       SW_STORAGE: elasticsearch
       SW_STORAGE_ES_CLUSTER_NODES: elasticsearch:9200
@@ -72,7 +72,7 @@ services:
     restart: always
 #    不映射宿主机端口，通过nginx添加登录验证后访问
 #    ports:
-#      - 8888:8080
+#      - 13800:8080
     environment:
       SW_OAP_ADDRESS: http://oap:12800
     logging:
@@ -88,8 +88,9 @@ services:
       - ui
     restart: always
     ports:
-#      - 9999:80
-      - 9999:8081
+#      - 9999:80    # nginx默认页
+      - 13800:13800 # skywalking-ui
+      - 5601:5601   # kibana
     environment:
       TZ: 'Asia/Shanghai'
     logging:
