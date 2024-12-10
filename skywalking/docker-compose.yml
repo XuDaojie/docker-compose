@@ -70,10 +70,33 @@ services:
     links:
       - oap
     restart: always
-    ports:
-      - 8888:8080
+#    不映射宿主机端口，通过nginx添加登录验证后访问
+#    ports:
+#      - 8888:8080
     environment:
       SW_OAP_ADDRESS: http://oap:12800
     logging:
       options:
         max-size: "10m"
+
+  nginx:
+    image: nginx:1.26.2
+    container_name: nginx-1_26
+    depends_on:
+      - ui
+    links:
+      - ui
+    restart: always
+    ports:
+#      - 9999:80
+      - 9999:8081
+    environment:
+      TZ: 'Asia/Shanghai'
+    logging:
+      options:
+        max-size: "10m"
+    volumes:
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/etc/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/etc/conf.d:/etc/nginx/conf.d
+      - ./nginx/.htpasswd:/etc/nginx/.htpasswd # 默认账号密码 skywalking:skywalking
