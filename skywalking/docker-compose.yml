@@ -80,6 +80,10 @@ services:
         max-size: "10m"
 
   nginx:
+#    image: openresty/openresty:1.21.4.1-0-alpine
+#    container_name: nginx-1_21
+#    image: nginx:1.26.2-otel
+#    container_name: nginx-1_26-otel
     image: nginx:1.26.2
     container_name: nginx-1_26
     depends_on:
