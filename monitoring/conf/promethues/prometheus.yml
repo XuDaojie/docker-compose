@@ -54,6 +54,13 @@ scrape_configs:
         labels:
           instance: 'multi-node.domain.com[node-01.domain.loc]'
 
+  - job_name: "mysqld_exporter"
+    #    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["host.docker.internal:9104"] # 访问宿主机IP
+#        labels:
+#          instance: 'multi-node.domain.com[node-01.domain.loc]'
+
   - job_name: "ruoyi"
     metrics_path: /actuator/prometheus
     static_configs:
