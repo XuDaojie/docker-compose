@@ -37,7 +37,8 @@ services:
     #   # - ./kibana/logs:/usr/share/kibana/logs
 
   oap:
-    image: apache/skywalking-oap-server:10.1.0-java21
+    image: apache/skywalking-oap-server:10.1.0-java17
+#    image: apache/skywalking-oap-server:10.1.0-java21
     container_name: skywalking-oap-10
     depends_on:
       - elasticsearch
@@ -63,7 +64,8 @@ services:
         max-size: "10m"
 
   ui:
-    image: apache/skywalking-ui:10.1.0-java21
+#    image: apache/skywalking-ui:10.1.0-java21
+    image: apache/skywalking-ui:10.1.0-java17
     container_name: skywalking-ui-10
     depends_on:
       - oap
