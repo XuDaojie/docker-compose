@@ -9,7 +9,7 @@ services:
     environment:
       discovery.type: single-node  #es单机模式
       TZ: Asia/Shanghai  #时区设置
-      TAKE_FILE_OWNERSHIP: true  #解决 volumes 挂载权限问题
+      TAKE_FILE_OWNERSHIP: "true"  #解决 volumes 挂载权限问题
       ES_JAVA_OPTS: -Xms256m -Xmx256m  #jvm内存分配为256MB
     ulimits:
       memlock:
