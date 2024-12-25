@@ -47,14 +47,15 @@ services:
     restart: always
     ports:
       - 11800:11800 # 与agent交互
-#      - 12800:12800 # 与ui交互
+      # - 12800:12800 # 与ui交互
     environment:
       SW_STORAGE: elasticsearch
       SW_STORAGE_ES_CLUSTER_NODES: elasticsearch:9200
       SW_HEALTH_CHECKER: default
       SW_TELEMETRY: prometheus
+      JAVA_OPTS: "-Xms1024m -Xmx1024m"
     healthcheck:
-      test: ["CMD", "./bin/swctl", "ch"]
+      test: ["CMD-SHELL", "curl http://localhost:12800/healthcheck"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -77,6 +78,7 @@ services:
 #      - 13800:8080
     environment:
       SW_OAP_ADDRESS: http://oap:12800
+      JAVA_OPTS: "-Xms256m -Xmx256m"
     logging:
       options:
         max-size: "10m"
