@@ -29,8 +29,8 @@ services:
       - '--log.level=debug'
       - '--storage.tsdb.retention.time=60d' # 日志保留60天
     volumes:
-      - ./conf/promethues:/etc/prometheus
-      - ./promethues:/prometheus
+      - ./conf/prometheus:/etc/prometheus
+      - ./prometheus:/prometheus
 
   # tag:http监控数据采集
   blackbox-exporter:
