@@ -3,12 +3,13 @@ services:
 
   mysqld-exporter:
     image: "prom/mysqld-exporter:v0.16.0"
+    container_name: mysqld-exporter-1
     restart: always
     ports:
       - 9104:9104
     command:
       - "--mysqld.username=exporter:123456"
-      - "--mysqld.address=host.docker.internal:3381"
+      - "--mysqld.address=host.docker.internal:3306"
 
 #  opentelemetry-collector:
 #    image: "otel/opentelemetry-collector-contrib:0.115.1"
