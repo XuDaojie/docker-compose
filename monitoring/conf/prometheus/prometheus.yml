@@ -1,0 +1,107 @@
+# my global config
+global:
+  scrape_interval: 30s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 30s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+  query_log_file: /prometheus/query.log
+# # Alertmanager configuration
+# alerting:
+#   alertmanagers:
+#     - static_configs:
+#         - targets:
+#            - alertmanager:9093
+# #           - host.docker.internal:9093
+
+# # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+# rule_files:
+#   # - "first_rules.yml"
+#   # - "second_rules.yml"
+#   - "alerts/first_rules.yml" # 告警规则配置文件
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "prometheus"
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "node_exporter"
+    scrape_interval: 15s
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ["host.docker.internal:9100"]
+        labels:
+          group: iStoreOS
+          name: name_demo
+          account: account_demo
+
+  - job_name: "mysqld_exporter"
+    #    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["host.docker.internal:9104"] # 访问宿主机IP
+#        labels:
+#          instance: 'multi-node.domain.com[node-01.domain.loc]'
+
+  - job_name: mysqld_exporter-multi-target # To get metrics about the mysql exporter’s targets
+    params:
+      # Not required. Will match value to child in config file. Default value is `client`.
+      auth_module: [client]
+    static_configs:
+      - targets:
+        # All mysql hostnames or unix sockets to monitor.
+        - 192.168.2.100:3306
+        - server2:3306
+        - unix:///run/mysqld/mysqld.sock
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        # The mysqld_exporter host:port
+        replacement: host.docker.internal:9104
+
+  - job_name: 'blackbox-http_2xx'
+    metrics_path: /probe
+    scrape_interval: 300s
+    params:
+      module: [http_2xx]  # Look for a HTTP 200 response.
+    static_configs:
+      - targets:
+          - http://baidu.com
+          - http://www.google.com
+          - http://www.qq.com
+          - http://www.weibo.com
+          - http://www.taobao.com
+          - http://192.168.2.1
+          - http://192.168.0.1
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox-exporter:9115  # The blackbox exporter's real hostname:port.
+  # 未测试
+  # - job_name: 'blackbox-tcp_connect'
+  #   metrics_path: /probe
+  #   params:
+  #     module: [tcp_connect]  # telnet
+  #   static_configs:
+  #     - targets:
+  #         - 192.168.1.40:1883
+  #   relabel_configs:
+  #     - source_labels: [__address__]
+  #       target_label: __param_target
+  #     - source_labels: [__param_target]
+  #       target_label: instance
+  #     - target_label: __address__
+  #       replacement: host.docker.internal:9115  # The blackbox exporter's real hostname:port.
