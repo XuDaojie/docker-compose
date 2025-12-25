@@ -5,11 +5,14 @@ services:
         container_name: syncthing
         hostname: my-syncthing
         environment:
-            - PUID=1000
-            - PGID=1000
-            - STGUIADDRESS=
+            # 0:0 是root
+            # syncthing直接本机运行的话创建的用户是syncthing:syncthing(499:499)
+            - PUID=499
+            - PGID=499
+            # - STGUIADDRESS=
         volumes:
             - ./data:/var/syncthing
+            - /mnt/mmc0-4/syncthing:/mnt/mmc0-4/syncthing
         network_mode: host
         restart: unless-stopped
         healthcheck:
