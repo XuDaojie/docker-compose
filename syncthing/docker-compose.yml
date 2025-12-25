@@ -8,6 +8,8 @@ services:
             - PUID=1000
             - PGID=1000
             - STGUIADDRESS=
+        ports:
+            - 8384:8384
 #        volumes:
 #            - /wherever/st-sync:/var/syncthing
         network_mode: host
