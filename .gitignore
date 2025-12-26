@@ -5,3 +5,5 @@ logs
 **/images/*.tar
 *.log
 mail
+
+easytier/demo.env
