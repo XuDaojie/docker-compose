@@ -1,16 +1,16 @@
 root = true
 
-[*]
-charset = utf-8
-end_of_line = lf
-indent_size = 4
-indent_style = space
-insert_final_newline = false
-max_line_length = 100
-tab_width = 4
+# [*]
+# charset = utf-8
+# end_of_line = lf
+# indent_size = 4
+# indent_style = space
+# insert_final_newline = false
+# max_line_length = 100
+# tab_width = 4
 
 [{**spring-configuration-metadata.json,*.har,*.jsb2,*.jsb3,*.json,.babelrc,.eslintrc,.stylelintrc,bowerrc,jest.config}]
 indent_size = 2
 
-[{*.yaml,*.yml,application-**.y**ml,application.yaml,application.yml,bootstrap-**.y**ml,bootstrap.yaml,bootstrap.yml}]
+[{*.yaml,*.yml,application-**.y**ml,application.yaml,application.yml,bootstrap-**.y**ml,bootstrap.yaml,bootstrap.yml,docker-compose.yml}]
 indent_size = 2
