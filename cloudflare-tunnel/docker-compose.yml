@@ -4,4 +4,7 @@ services:
     image: cloudflare/cloudflared:latest
     restart: unless-stopped
     container_name: cloudflare_tunnel
-    command: "tunnel --no-autoupdate run --token ${TOKEN}"
+    # 默认使用QUIC协议,openclash设置中可能默认关闭QUIC协议
+    # command: "tunnel --no-autoupdate run --token ${TOKEN}"
+    # 切换tcp
+    command: "tunnel --no-autoupdate --protocol http2 run --token ${TOKEN}"
