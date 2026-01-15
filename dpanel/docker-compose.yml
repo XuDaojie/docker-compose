@@ -8,8 +8,8 @@ services:
     restart: always
     ports:
       # 使用 Lite 版时删除 80 及 443 端口映射配置
-#      - 80:80
-#      - 443:443
+      #      - 80:80
+      #      - 443:443
       # 修改 8807 更改面板访问端口
       - 8807:8080
     environment:
@@ -24,12 +24,12 @@ services:
       # windows、 macos 将冒号前更改为 //var/run/docker.sock
       - /var/run/docker.sock:/var/run/docker.sock
       # 将 /home/dpanel 更改为你想要挂载的宿主机目录
-#      - /home/dpanel:/dpanel
-      - ./data:/dpanel
+      - /home/dpanel:/dpanel
+      # - ./data/dpanel:/dpanel
       # 单独挂载 compose 目录
       # - /opt/compose:/dpanel/compose
-    extra_hosts:
-      - "host.dpanel.local:host-gateway"
+    # extra_hosts:
+    #   - "host.dpanel.local:host-gateway"
     logging:
       driver: "json-file"
       options:
