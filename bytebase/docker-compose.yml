@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  bytebase:
+    image: bytebase/bytebase:latest
+    container_name: bytebase
+    init: true              # 对应 --init
+    restart: always         # 建议添加，生产环境必备
+    ports:
+      - "8978:8080"         # 对应 --publish 8080:8080
+    volumes:
+      - ./data:/var/opt/bytebase  # 对应 --volume
+    # 如果你在国内环境，可能需要设置时区
+    environment:
+      - TZ=Asia/Shanghai
