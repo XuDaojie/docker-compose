@@ -5,7 +5,7 @@ services:
     image: dbeaver/cloudbeaver:latest
     container_name: cloudbeaver
     restart: always  # 建议加上，确保容器异常退出后能自动重启
-    user: xdj
+    user: root
     ports:
       - "8978:8978"
     volumes:
