@@ -1,0 +1,10 @@
+# 默认admin账号密码均为 shark  请及时修改
+
+services:
+  shark:
+    image: ghcr.io/chen-gaoyuan/shark:5.2.6
+    restart: unless-stopped
+    ports:
+      - '13780:13780'
+    volumes:
+      - ./data:/app/data
