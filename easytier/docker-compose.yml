@@ -16,7 +16,7 @@ services:
         labels:
             com.centurylinklabs.watchtower.enable: 'true'
         restart: unless-stopped
-        network_mode: host
+#        network_mode: host # 官方使用host模式，但尝试后发现会报错
         ports:
             - 11010:11010
             - 11010:11010/udp
