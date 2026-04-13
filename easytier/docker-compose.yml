@@ -16,7 +16,7 @@ services:
         labels:
             com.centurylinklabs.watchtower.enable: 'true'
         restart: unless-stopped
-        # network_mode: host
+        network_mode: host
         ports:
             - 11010:11010
             - 11010:11010/udp
