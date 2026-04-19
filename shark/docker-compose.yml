@@ -2,7 +2,7 @@
 
 services:
   shark:
-    image: ghcr.io/chen-gaoyuan/shark:5.2.6
+    image: ghcr.io/chen-gaoyuan/shark:5.2.7
     restart: unless-stopped
     ports:
       - '13780:13780'
